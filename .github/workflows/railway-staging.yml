@@ -14,3 +14,4 @@ jobs:
       - uses: actions/checkout@v3
       - run: bash <(curl -fsSL cli.new)
       - run: railway link --environment production 1efc7682-5a51-4a72-b914-c6a701a0207a
+      - run: railway up --service e2aa0d1d-631e-49d7-9545-bd56ba21ca88
