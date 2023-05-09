@@ -5,6 +5,7 @@ on:
 
 env:
   RAILWAY_ENV: staging
+  RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
 jobs:
   deploy:
