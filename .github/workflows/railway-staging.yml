@@ -3,6 +3,9 @@ name: Railway (Staging)
 on:
   push:
 
+env:
+  RAILWAY_ENV: staging
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
