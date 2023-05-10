@@ -20,5 +20,10 @@ func main() {
 		}
 		return c.JSON(http.StatusOK, map[string]string{"hostname": hostname})
 	})
+	e.GET("/git", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, map[string]string{
+			"RAILWAY_GIT_COMMIT_SHA": os.Getenv("RAILWAY_GIT_COMMIT_SHA"),
+		})
+	})
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", os.Getenv("PORT"))))
 }
