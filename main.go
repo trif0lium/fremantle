@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -36,5 +37,9 @@ func main() {
 		})
 	})
 	e.Static("/data", "/railway/data")
+	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
+		Root:   mountPath,
+		Browse: true,
+	}))
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", os.Getenv("PORT"))))
 }
