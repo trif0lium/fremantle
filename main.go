@@ -17,7 +17,7 @@ func main() {
 	mountPath := os.Getenv("RLWY_INTERNAL_VOLUME_MOUNT_PATH")
 
 	if volumeID != "" && mountPath != "" {
-		_ = os.WriteFile(filepath.Join(mountPath, fmt.Sprint(now.Second())), []byte(now.UTC().String()), 0644)
+		_ = os.WriteFile(filepath.Join(mountPath, fmt.Sprint(now.Unix())), []byte(now.UTC().String()), 0644)
 	}
 	e := echo.New()
 	e.GET("/health", func(c echo.Context) error {
