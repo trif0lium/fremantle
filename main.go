@@ -26,7 +26,7 @@ func main() {
 			"RAILWAY_GIT_COMMIT_SHA": os.Getenv("RAILWAY_GIT_COMMIT_SHA"),
 		})
 	})
-	e.GET("/data", nil, middleware.StaticWithConfig(middleware.StaticConfig{
+	e.GET("/data", echo.NotFoundHandler, middleware.StaticWithConfig(middleware.StaticConfig{
 		Browse: true,
 		Root:   "/railway/data",
 	}))
