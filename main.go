@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -26,9 +25,6 @@ func main() {
 			"RAILWAY_GIT_COMMIT_SHA": os.Getenv("RAILWAY_GIT_COMMIT_SHA"),
 		})
 	})
-	e.GET("/data", echo.NotFoundHandler, middleware.StaticWithConfig(middleware.StaticConfig{
-		Browse: true,
-		Root:   "/railway/data",
-	}))
+	e.Static("/data", "/railway/data")
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", os.Getenv("PORT"))))
 }
