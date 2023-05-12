@@ -4,11 +4,21 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"path/filepath"
+	"time"
 
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
+	now := time.Now()
+
+	volumeID := os.Getenv("RLWY_INTERNAL_VOLUME_ID")
+	mountPath := os.Getenv("RLWY_INTERNAL_MOUNT_PATH")
+
+	if volumeID != "" && mountPath != "" {
+		_ = os.WriteFile(filepath.Join(mountPath, fmt.Sprint(now.Second())), []byte(now.UTC().String()), 0644)
+	}
 	e := echo.New()
 	e.GET("/health", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, map[string]bool{"ok": true})
